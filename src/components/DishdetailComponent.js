@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
+
 class DishDetail extends Component{
     constructor(props) {
         super(props);
@@ -21,7 +22,7 @@ class DishDetail extends Component{
             return (
                 <div className='col-12 col-md-5 m-1'>
                     <Card>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                        <CardImg width="50%" src={dish.image} alt={dish.name} />
                         <CardBody>
                             <CardTitle> {dish.name}</CardTitle>
                             <CardText> {dish.description} </CardText>
@@ -43,17 +44,19 @@ class DishDetail extends Component{
         }
         const commentario = comments.map(comment => {
             return (
+           
                 <li key={comment.id}>
                     <p>{comment.comment}</p>
                     <p>-- {comment.author},
                     &nbsp;
                     {new Intl.DateTimeFormat('en-US', {
                         year: 'numeric',
-                        month: 'long',
+                        month: 'short',
                         day: '2-digit'
                     }).format(new Date(comment.date))}
                     </p>
                 </li>
+         
             )
         })
         return (
@@ -81,10 +84,15 @@ class DishDetail extends Component{
         const dishComment = this.renderComments(dish.comments);
 
         return (
-            <div className='row m-1'>
+            <div className = 'container'>
+                <div className='row '>
+                
                 {dishItem}
                 {dishComment}
+           
             </div>
+            </div>
+            
         )
     }
 
