@@ -20,7 +20,7 @@ class Header extends Component {
             <>{/*<> if it does not work use React.Fragment inside on it
             </> is an abrevation from React.Fragment*/}            
             <Navbar dark expand="md">
-                <div className="container">
+                <div className="container-fluid content-row">
                     <NavbarToggler onClick = {this.toggleNav}/>
                     <NavbarBrand className="mr-auto" href="/">
                         <img src="assets/images/logo.png" height="30" width= "41" alt="Ristorante Con Fusion"></img>
@@ -52,7 +52,7 @@ class Header extends Component {
                 </div>
             </Navbar>
             <Jumbotron >
-            <div className="container">
+            <div className="container-fluid content-row">
                 <div className ="row row-header">
                     <div className="col-12 col-sm-6">
                         <h1>Ristorante Con Fusion</h1>
