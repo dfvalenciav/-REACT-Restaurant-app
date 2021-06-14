@@ -9,14 +9,13 @@ import DishDetail from './DishdetailComponent';
 import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-const mapStateToProps = state =>{
-    return {
-      dishes: state.dishes,
-      comments: state.comments,
-      promotions: state.promotions,
-      leaders: state.leaders
-
-    }
+const mapStateToProps = state => {
+  return {
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders
+  }
 }
 
 class Main extends Component{
@@ -69,4 +68,4 @@ class Main extends Component{
     );
   }
 }
-export default withRouter(connect (mapStateToProps(Main)));
+export default withRouter(connect(mapStateToProps)(Main));

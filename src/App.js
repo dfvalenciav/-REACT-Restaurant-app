@@ -12,10 +12,10 @@ class App extends Component{
 
   render(){
     return (
-      <Provider store = {store}>
+      <Provider store={store}>
         <BrowserRouter>
-          <div >
-            <Main/>
+          <div className="App">
+            <Main />
           </div>
         </BrowserRouter>
       </Provider>
