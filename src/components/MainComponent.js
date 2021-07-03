@@ -10,6 +10,7 @@ import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {postComment, fetchComments, fetchDishes, fetchPromos} from '../redux/ActionCreators';
 import {actions} from 'react-redux-form';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
@@ -81,14 +82,18 @@ componentDidMount(){
     return (
       <div >
         <Header/>
-        <Switch>
-          <Route path="/home" component={HomePage}></Route>
-          <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes}/>}></Route>
-          <Route path = "/menu/:dishId" component={DishWithId}></Route>
-          <Route exact path="/contactus" component={() => <Contact resetFeedbackForm = {this.props.resetFeedbackForm}/>}></Route>
-          <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders}/>}></Route>
-          <Redirect to="/home"></Redirect>
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition key={this.props.location.key} classNames="page" timeout={1000}>
+            <Switch>
+              <Route path="/home" component={HomePage}></Route>
+              <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes}/>}></Route>
+              <Route path = "/menu/:dishId" component={DishWithId}></Route>
+              <Route exact path="/contactus" component={() => <Contact resetFeedbackForm = {this.props.resetFeedbackForm}/>}></Route>
+              <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders}/>}></Route>
+              <Redirect to="/home"></Redirect>
+            </Switch>
+            </CSSTransition>
+        </TransitionGroup>
        { /*<Menu dishes = {this.state.dishes}
           onClick = {(dishId) => this.onDishSelect(dishId)}/>
         <Dishdetail dish = { this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}></Dishdetail>*/}
