@@ -1,53 +1,70 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media  } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
 
-function About (props) {
-function RenderLeader ({leader}){
-        return (
-            <div className="row row-content-fluid">
-            <div className="col-3 ">
-                
-                    <img width = "50%" src={leader.image} alt={leader.name} ></img>
-                
-                
-            </div>
-            <div className="col-9 ">
-                <h3> {leader.name}</h3>
-                <h4>{leader.designation}</h4>
-                <p> {leader.description} </p>                  
-            </div>    
-        </div>
-        );
-    }
+function About(props) {
 
-    const leaders = props.leaders.map((leader) => {
+const leaders = props.leaders.leaders.map(leader => {
         return (
-            <p>
-              <RenderLeader leader ={leader}/>
-            </p>
+            <RenderLeader leader={leader} />
         );
     });
-    
 
-   /* const leaders = props.leaders.map((leader) => {
+function RenderLeader({ leader }) {
+    return (
+        <Media className="mt-5">
+            <Media left className="mr-5">
+                <Media object src={baseUrl + leader.image} alt={leader.name} />
+            </Media>
+            <Media body>
+                <Media heading>{leader.name}</Media>
+                <p>{leader.designation}</p>
+                {leader.description}
+            </Media>
+        </Media>
+    );
+}
+
+/*function RenderContent({ leaders, isLoading, errMess }) {
+    if (isLoading) {
+        return <Loading />;
+    } else if (errMess) {
+        return <h4>{errMess}</h4>;
+    } else
         return (
-            <div className="row row-content-fluid">
-                <div className="col-3 ">
-                    
-                        <img width = "50%" src={leader.image} alt={leader.name} ></img>
-                    
-                    
-                </div>
-                <div className="col-9 ">
-                    <h3> {leader.name}</h3>
-                    <p> {leader.description} </p>                  
-                </div>    
-            </div>  
+            <Stagger in>
+                {leaders.map(leader => (
+                    <Fade in key={leader.id}>
+                        <RenderLeader key={leader.id} leader={leader} />
+                    </Fade>
+                ))}
+            </Stagger>
         );
-    });*/
+}*/
 
-    return(
+function RenderLeaders() {
+
+    if (props.leaders.isLoading) {
+        return <Loading />;
+    }
+    else if (props.leaders.errMess) {
+        return (
+            <h4>{props.leaders.errMess}</h4>
+        );
+    }
+    else return (
+        <Media list>
+            
+                {leaders}
+            
+        </Media>
+    );
+}
+
+
+    return (
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -57,7 +74,7 @@ function RenderLeader ({leader}){
                 <div className="col-12">
                     <h3>About Us</h3>
                     <hr />
-                </div>                
+                </div>
             </div>
             <div className="row row-content">
                 <div className="col-12 col-md-6">
@@ -97,20 +114,23 @@ function RenderLeader ({leader}){
                     </Card>
                 </div>
             </div>
+
+
             <div className="row row-content">
                 <div className="col-12">
                     <h2>Corporate Leadership</h2>
                 </div>
+                
                 <div className="col-12">
-                    <Media list>
-                        {leaders}
-                    </Media>
+                    <div className="row">
+                        <Media list>
+                            <RenderLeaders/>                             
+                        </Media>        
+                    </div>                    
                 </div>
             </div>
         </div>
     );
-
 }
 
-
-export default About;    
+export default About;      
