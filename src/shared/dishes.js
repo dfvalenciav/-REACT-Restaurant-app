@@ -28,7 +28,7 @@ export const DISHES =
         label:'New',
         price:'1.99',
         featured: false,
-        description:'A quintessential ConFusion experience, is it a vada or is it a donut?'
+        description:'A quintessential ConFusion experience, is it a vada or is it a donut? or do you want a hot dog?'
         },
         {
         id: 3,
@@ -38,6 +38,6 @@ export const DISHES =
         label:'',
         price:'2.99',
         featured: false,
-        description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
+        description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms and delicious salmon'
         }
     ];
